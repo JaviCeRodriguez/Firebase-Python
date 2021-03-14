@@ -8,4 +8,12 @@ data = {
     'comentario': 'Hola! estoy probando Firebase'
 }
 
-db.create('/comments', data)
+# Crear datos
+# db.create('/comments', data)
+
+# Leer datos
+comments = db.read('/comments', 'nombre')
+for _, comment in comments.items():
+    print(f'{comment["correo"]}')
+
+# Actualizar datos
