@@ -1,8 +1,11 @@
 from modules.firebase_db import DB
 
+db = DB()
+
 data = {
-    'nombre': 'Javo',
-    'edad': 25
+    'nombre': 'Naruto',
+    'correo': 'nuzumaki@google.com',
+    'comentario': 'Hola! estoy probando Firebase'
 }
 
-DB().create(data)
+db.create('/comments', data)
