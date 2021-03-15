@@ -36,8 +36,31 @@ class DB():
         ref = db.reference(path)
         return ref.order_by_child(order).get()
     
-    def update(self):
-        pass
+    def update(self, path: str, keyIndex: str, keyAim: str, valueIndex, valueAim):
+        '''
+        Actualiza un objeto específico de una colección.\n
+        El dato a actualizar es el valor de la variable (o el value de la key, en terminos de diccionarios).\n
+            - "path" es la colección a buscar\n
+            - "keyIndex" y "valueIndex" son valores de referencia del dato a encontrar\n
+            - "keyAim" y "valueAim" son valores del dato objetivo a actualizar\n
+        Si hay datos coincidentes con la referencia, actualiza el primero que encuentra.
+        '''
+        ref = db.reference(path)
+        doc = ref.get()
+        for k, v in doc.items():
+            if(v[keyIndex] == valueIndex):
+                obj = {keyAim: valueAim}
+                ref.child(k).update(obj)
+            return
     
-    def delete(self):
-        pass
+    def delete(self, path: str, keyIndex: str, valueIndex):
+        '''
+        Eliminar un objeto específico, tomando como referencia un key y un value (en término de diccionarios).\n
+        Elimina el primer dato coincidente.
+        '''
+        ref = db.reference(path)
+        doc = ref.get()
+        for k, v in doc.items():
+            if(v[keyIndex] == valueIndex):
+                ref.child(k).set({})
+            return
