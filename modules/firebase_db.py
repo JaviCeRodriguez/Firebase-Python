@@ -34,7 +34,8 @@ class DB():
         Editar las reglas para poder indexar utilizando "order".
         '''
         ref = db.reference(path)
-        return ref.order_by_child(order).get()
+        data = ref.order_by_child(order).get().items()
+        return data
     
     def update(self, path: str, keyIndex: str, keyAim: str, valueIndex, valueAim):
         '''
